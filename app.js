@@ -3,6 +3,13 @@ const notesContainer = document.querySelector('#notes-container');
 const notesForm = document.querySelector('form');
 const textInput = document.querySelector('input');
 
+notesContainer.addEventListener('click', async(ev)=> {
+  const id = ev.target.getAttribute('data-id'); 
+  if(id){
+    await axios.delete(`${API}/users/${user.id}/notes/${id}`);
+  }
+});
+
 notesForm.addEventListener('submit', async(ev)=> {
   ev.preventDefault();
   const note = {
@@ -10,6 +17,9 @@ notesForm.addEventListener('submit', async(ev)=> {
   };
   const response = await axios.post(`${API}/users/${user.id}/notes`, note);
   const created = response.data;
+  //notes = notes.push(created);
+  notes = [...notes, created];
+  renderNotes();
 });
 let user, notes;
 
@@ -46,6 +56,7 @@ const renderNotes = ()=> {
     return `
       <li>
         ${ note.text }
+        <button data-id='${note.id}'>X</button>
       </li>
     `;
   }).join('');
