@@ -23,7 +23,6 @@ const fetchUser = async ()=> {
 };
 
 const renderUser = ()=> {
-  console.log(user);
   const html = `
     <h2>${ user.fullName}</h2>
     <img src='${user.avatar}'/>
@@ -32,12 +31,25 @@ const renderUser = ()=> {
   userContainer.innerHTML = html;
 };
 
+const renderNotes = ()=> {
+  let html = notes.map( note => {
+    return `
+      <li>
+        ${ note.text }
+      </li>
+    `;
+  }).join('');
+  html = `<h2>Notes (${ notes.length})</h2><ul>${html}</ul>`;
+  notesContainer.innerHTML = html;
+
+};
+
 const startApp = async()=> {
   user = await fetchUser();
   renderUser();
   const response = await axios.get(`${API}/users/${user.id}/notes`);
   notes = response.data;
-  console.log(notes);
+  renderNotes();
 };
 
 startApp();

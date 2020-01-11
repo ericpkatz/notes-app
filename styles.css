@@ -3,7 +3,22 @@ body {
   margin: 3rem;
 }
 
+main {
+  display: flex;
+}
+
+h2 {
+  color: dodgerBlue;
+}
+
+input, button {
+  height: 3rem;
+  font-size: 2rem;
+}
+
 main > * {
+  flex: 1;
+  margin: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
