@@ -20,9 +20,19 @@ const fetchUser = async ()=> {
   return  user;
 };
 
+const renderUser = ()=> {
+  console.log(user);
+  const html = `
+    <h2>${ user.fullName}</h2>
+    <img src='${user.avatar}'/>
+    <div>${ user.bio }</div>
+  `;
+  userContainer.innerHTML = html;
+};
+
 const startApp = async()=> {
   user = await fetchUser();
-  console.log(user);
+  renderUser();
 };
 
 startApp();

@@ -2,3 +2,18 @@ body {
   font-family: sans-serif;
   margin: 3rem;
 }
+
+main > * {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 1px black;
+}
+
+img {
+  border-radius: 50%;
+}
+
+main > * > * {
+  margin: 1rem;
+}
