@@ -1,3 +1,6 @@
+const userContainer = document.querySelector('#user-info');
+let user, notes;
+
 const API = 'https://acme-users-api-rev.herokuapp.com/api';
 
 const fetchUser = async ()=> {
@@ -17,5 +20,9 @@ const fetchUser = async ()=> {
   return  user;
 };
 
-fetchUser()
-  .then( user => console.log(user));
+const startApp = async()=> {
+  user = await fetchUser();
+  console.log(user);
+};
+
+startApp();
