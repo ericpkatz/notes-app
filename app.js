@@ -1,4 +1,6 @@
 const userContainer = document.querySelector('#user-info');
+const notesContainer = document.querySelector('#notes-container');
+console.log(notesContainer);
 let user, notes;
 
 const API = 'https://acme-users-api-rev.herokuapp.com/api';
@@ -33,6 +35,9 @@ const renderUser = ()=> {
 const startApp = async()=> {
   user = await fetchUser();
   renderUser();
+  const response = await axios.get(`${API}/users/${user.id}/notes`);
+  notes = response.data;
+  console.log(notes);
 };
 
 startApp();
