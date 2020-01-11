@@ -1,6 +1,16 @@
 const userContainer = document.querySelector('#user-info');
 const notesContainer = document.querySelector('#notes-container');
-console.log(notesContainer);
+const notesForm = document.querySelector('form');
+const textInput = document.querySelector('input');
+
+notesForm.addEventListener('submit', async(ev)=> {
+  ev.preventDefault();
+  const note = {
+    text: textInput.value
+  };
+  const response = await axios.post(`${API}/users/${user.id}/notes`, note);
+  const created = response.data;
+});
 let user, notes;
 
 const API = 'https://acme-users-api-rev.herokuapp.com/api';
